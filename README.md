@@ -18,6 +18,11 @@ In my submitted solution, I reinitialized membershipPeriods array to [] in order
 - I updated the schema and response definitions to account for discrepancies between the mocked data and the API response model—such as differences between userId and user, and between membership and membershipId. The schema now also supports both string and Date types for the validFrom and validUntil fields.
 
 
+## Task 2
+
+Explanation of individual software components is available in task2/Architecture_Desc.pdf.
+
+![Architecture Diagram](task2/es-architecture_diag.png)
 
 # Fullstack Interview Challenge
 
