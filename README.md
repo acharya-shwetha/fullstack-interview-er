@@ -1,3 +1,24 @@
+# Assignment Submission
+
+## Task 1
+
+- Defined Input type definitions inside /modern/routes/dto.ts.
+- Defined Response types and Enum definitions inside /modern/routes/models.ts.
+- Defined schema for data loaded from JSON files inside /moder/routes/schema.ts.
+- Added helper functions inside /moder/routes/helper.ts.
+    - Separated Request body validations into validateRequestBody(). 
+    - Added compute functions for state and validFrom.
+- Refactored POST /memberships and GET /memberships.
+- Added test cases for POST /memberships and GET /memberships inside __tests__.
+
+### Findings
+- Identified an issue in the GET /legacy/memberships endpoint where the periods array was always returned empty. The root cause was that in POST /legacy/memberships, membership periods were correctly computed but were being assigned to a newly initialized array also named membershipPeriods. As a result, the GET endpoint continued to read from the JSON file, which never contained the newly generated membership periods.
+In my submitted solution, I reinitialized membershipPeriods array to [] in order to remain consistent with the requirements stated in the task description.
+- Also identified an issue in the POST /legacy/memberships endpoint where a membership was incorrectly created when billingPeriods = 2 and billingInterval = "monthly". This occurred because the validation logic referenced req.billingPeriods instead of req.body.billingPeriods, causing the validation to be bypassed. In my submitted solution, I corrected the property reference to req.body.billingPeriods, ensuring that the billingPeriodsLessThan6Months validation is properly triggered.
+- I updated the schema and response definitions to account for discrepancies between the mocked data and the API response model—such as differences between userId and user, and between membership and membershipId. The schema now also supports both string and Date types for the validFrom and validUntil fields.
+
+
+
 # Fullstack Interview Challenge
 
 ## Context
