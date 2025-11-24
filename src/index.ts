@@ -1,18 +1,10 @@
-import express from 'express'
-import membershipRoutes from './modern/routes/membership.routes'
-import { errorHandler } from './error-handler.middleware'
+import app from "./app";
 
-// because of the javascript module, we need to use require to import the legacy routes
-const legacyMembershipRoutes = require('./legacy/routes/membership.routes')
+// Creation of app is moved into app.ts
+// so that testcases can be written using app.
 
-const app = express()
-const port = 3099
-
-app.use(express.json())
-app.use('/memberships', membershipRoutes);
-app.use('/legacy/memberships', legacyMembershipRoutes);
-app.use(errorHandler);
+const port = 3099;
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
-})
+  console.log(`Server running on http://localhost:${port}`);
+});
